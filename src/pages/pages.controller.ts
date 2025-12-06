@@ -9,7 +9,7 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 import {  UpdatePageDto, PagePaginationDto } from './dto/page.dto';
 import { CreatePageDto } from './dto/create-page.dto';
 import { PagesService } from './pages.service';
-import { UserRole } from 'src/enum';
+import { UserRole, FileSizeLimit } from 'src/enum';
 
 @ApiTags('Pages')
 @ApiBearerAuth('JWT-auth')
@@ -32,6 +32,9 @@ export class PagesController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Create new page' })
@@ -60,7 +63,7 @@ export class PagesController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 }),
+          new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE }),
         ],
       }),
     )
@@ -118,6 +121,9 @@ export class PagesController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Update page image' })
@@ -144,7 +150,7 @@ export class PagesController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 }),
+          new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE }),
         ],
       }),
     )

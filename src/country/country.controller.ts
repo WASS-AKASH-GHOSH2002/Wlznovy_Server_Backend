@@ -4,7 +4,7 @@ import { CountryPaginationDto, CreateCountryDto } from './dto/create-country.dto
 import { UpdateCountryDto } from './dto/update-country.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { PermissionAction, UserRole } from 'src/enum';
+import { PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { CheckPermissions } from 'src/auth/decorators/permissions.decorator';
 import { PermissionsGuard } from 'src/auth/guards/permissions.guard';
@@ -86,6 +86,9 @@ export class CountryController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   async uploadImage(

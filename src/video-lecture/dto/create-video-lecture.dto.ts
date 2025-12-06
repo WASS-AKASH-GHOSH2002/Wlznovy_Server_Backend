@@ -32,14 +32,12 @@ export class UpdateVideoLectureDto {
   @IsString()
   description: string;
 
-  @IsOptional()
-  @IsString()
-  videoUrl: string;
-
 
   @IsOptional()
-  @IsEnum(AccessTypes)
-  accessTypes: AccessTypes;
+  @IsNumber()
+  @Type(() => Number)
+  duration: number;
+
 }
 
 export class VideoLecturePaginationDto {

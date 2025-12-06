@@ -20,7 +20,7 @@ import { UpdateNewsDto } from './dto/update-news.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { PermissionAction, UserRole } from 'src/enum';
+import { PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { CommonPaginationDto } from 'src/common/dto/common-pagination.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -82,13 +82,16 @@ export class NewsController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   async image(
     @Param('id') id: string,
     @UploadedFile(
       new ParseFilePipe({
-        validators: [new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 })],
+        validators: [new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE })],
       }),
     )
     file: Express.Multer.File,

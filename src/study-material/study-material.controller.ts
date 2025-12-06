@@ -5,7 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-import { PermissionAction, UserRole } from 'src/enum';
+import { PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -35,6 +35,9 @@ export class StudyMaterialController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.DOCUMENT_SIZE,
+      },
     }),
   )
   create(
@@ -62,6 +65,9 @@ export class StudyMaterialController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.DOCUMENT_SIZE,
+      },
     }),
   )
   admincreate(
@@ -137,6 +143,9 @@ export class StudyMaterialController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.DOCUMENT_SIZE,
+      },
     }),
   )
   async pdf(
@@ -168,6 +177,9 @@ export class StudyMaterialController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.DOCUMENT_SIZE,
+      },
     }),
   )
   async adminpdf(

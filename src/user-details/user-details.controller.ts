@@ -21,7 +21,7 @@ import { Account } from 'src/account/entities/account.entity';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { UserRole } from 'src/enum';
+import { UserRole, FileSizeLimit } from 'src/enum';
 import { UpdateUserDetailDto } from './dto/update-user-details.dto';
 import { UserDetailsService } from './user-details.service';
 import {
@@ -66,6 +66,9 @@ export class UserDetailsController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Update user profile image' })

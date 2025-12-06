@@ -171,6 +171,9 @@ admincreate(
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.VIDEO_SIZE,
+      },
     }),
   )
   async uploadVideo(
@@ -201,6 +204,9 @@ admincreate(
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   async thumbnail(
@@ -233,6 +239,9 @@ admincreate(
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.VIDEO_SIZE,
+      },
     }),
   )
   async adminuploadVideo(
@@ -264,6 +273,9 @@ admincreate(
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   async adminthumbnail(

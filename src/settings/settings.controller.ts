@@ -14,7 +14,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { PermissionAction, UserRole } from 'src/enum';
+import { PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { SettingDto } from './dto/setting.dto';
 import { SettingsService } from './settings.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -62,6 +62,9 @@ export class SettingsController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.LOGO_SIZE,
+      },
     }),
   )
   async logo(
@@ -69,7 +72,7 @@ export class SettingsController {
       new ParseFilePipe({
         validators: [
           new FileTypeValidator({ fileType: '.(png|jpeg|jpg)' }),
-          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 1 }),
+          new MaxFileSizeValidator({ maxSize: FileSizeLimit.LOGO_SIZE }),
         ],
       }),
     )

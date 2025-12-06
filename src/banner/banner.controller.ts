@@ -6,7 +6,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { DefaultStatus, PermissionAction, UserRole } from 'src/enum';
+import { DefaultStatus, PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { BannerDto, BannerFilterDto, BannerPaginationDto } from './dto/create-banner.dto';
 import { CheckPermissions } from 'src/auth/decorators/permissions.decorator';
 import { PermissionsGuard } from 'src/auth/guards/permissions.guard';
@@ -43,6 +43,9 @@ export class BannerController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Create new banner' })
@@ -80,7 +83,7 @@ export class BannerController {
       new ParseFilePipe({
         validators: [
           // new FileTypeValidator({ fileType: 'image/(jpeg|jpg|png)' }),
-           new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 }),
+           new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE }),
         ],
       }),
     )
@@ -126,6 +129,9 @@ export class BannerController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Update banner image' })

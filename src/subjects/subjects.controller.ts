@@ -5,7 +5,7 @@ import { UpdateSubjectDto } from './dto/update-subject.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'node:path';
-import { PermissionAction, UserRole } from 'src/enum';
+import { PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { CheckPermissions } from 'src/auth/decorators/permissions.decorator';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
@@ -78,6 +78,9 @@ export class SubjectsController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   async image(

@@ -294,7 +294,8 @@ export enum PaymentMethod {
 }
 
 export enum FileSizeLimit {
-  IMAGE_SIZE = 5 * 1024 * 1024, 
-  VIDEO_SIZE = 10 * 1024 * 1024, // 10MB
+  IMAGE_SIZE = 5 * 1024 * 1024, // 5MB
+  VIDEO_SIZE = 50 * 1024 * 1024, // 50MB
   DOCUMENT_SIZE = 10 * 1024 * 1024, // 10MB
+  LOGO_SIZE = 1 * 1024 * 1024, // 1MB
 }

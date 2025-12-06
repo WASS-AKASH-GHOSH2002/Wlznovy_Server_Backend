@@ -41,7 +41,7 @@ export class CourseController {
       }),
       fileFilter: courseImageFileFilter,
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB
+        fileSize: FileSizeLimit.IMAGE_SIZE,
       },
     })
   )
@@ -74,7 +74,7 @@ export class CourseController {
       }),
       fileFilter: courseImageFileFilter,
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB
+        fileSize: FileSizeLimit.IMAGE_SIZE,
       },
     })
   )
@@ -135,7 +135,7 @@ export class CourseController {
       }),
       fileFilter: courseImageFileFilter,
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB
+        fileSize: FileSizeLimit.IMAGE_SIZE,
       },
     })
   )
@@ -169,7 +169,7 @@ export class CourseController {
       }),
       fileFilter: courseImageFileFilter,
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB
+        fileSize: FileSizeLimit.IMAGE_SIZE,
       },
     })
   )
@@ -212,7 +212,7 @@ export class CourseController {
       }),
       fileFilter: courseImageFileFilter,
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB
+        fileSize: FileSizeLimit.IMAGE_SIZE,
       },
     }),
   )
@@ -221,7 +221,7 @@ export class CourseController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 }) // 5MB
+          new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE })
         ],
       }),
     )
@@ -249,7 +249,7 @@ export class CourseController {
       }),
       fileFilter: courseImageFileFilter,
       limits: {
-        fileSize: 5 * 1024 * 1024, // 5MB
+        fileSize: FileSizeLimit.IMAGE_SIZE,
       },
     }),
   )
@@ -258,7 +258,7 @@ export class CourseController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 }) // 5MB
+          new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE })
         ],
       }),
     )

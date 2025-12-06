@@ -39,8 +39,7 @@ export class VideoLecture {
 
   @Column({ type: 'int', default: 0 })
   duration: number;
-
-
+  
   @CreateDateColumn()
   createdAt: Date;
 

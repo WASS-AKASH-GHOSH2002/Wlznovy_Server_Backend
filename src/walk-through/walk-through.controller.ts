@@ -29,7 +29,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'node:path';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { DefaultStatus, PermissionAction, UserRole } from 'src/enum';
+import { DefaultStatus, PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { CheckPermissions } from 'src/auth/decorators/permissions.decorator';
 import { PermissionsGuard } from 'src/auth/guards/permissions.guard';
 import {
@@ -65,6 +65,9 @@ export class WalkThroughController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Create a new walk-through' })
@@ -158,6 +161,9 @@ export class WalkThroughController {
           return callback(null, `${randomName}${extname(file.originalname)}`);
         },
       }),
+      limits: {
+        fileSize: FileSizeLimit.IMAGE_SIZE,
+      },
     }),
   )
   @ApiOperation({ summary: 'Update walk-through image' })

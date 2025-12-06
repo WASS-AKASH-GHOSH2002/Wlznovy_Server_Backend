@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { randomInt } from 'crypto';
 import {
   BadRequestException,
   ConflictException,
@@ -62,7 +63,7 @@ export class AuthService {
     }
     
   //const otp = "783211";
-   const otp = Math.floor(100000 + Math.random() * 900000).toString();
+   const otp = randomInt(100000, 1000000).toString();
     await this.cacheManager.set(`admin_login_${admin.email}`, {
       otp,
       adminId: admin.id,
@@ -209,7 +210,7 @@ export class AuthService {
   }
 
   async sendRegistrationOtp(email: string, userData: any) {
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = randomInt(100000, 1000000).toString();
     const userDataKey = `registration_data_${email}`;
     const otpKey = `registration_otp_${email}`;
     
@@ -240,7 +241,7 @@ export class AuthService {
     }
 
     
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = randomInt(100000, 1000000).toString();
     const otpKey = `registration_otp_${email}`;
     await this.cacheManager.set(otpKey, otp, 2 * 60 * 1000);
 
@@ -342,7 +343,7 @@ export class AuthService {
       );
     }
     //const otp = "783211";
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = randomInt(100000, 1000000).toString();
     await this.cacheManager.set(dto.email, otp, 2 * 60 * 1000);
     try {
       await this.nodeMailerService.sendOtpInEmail(dto.email, otp);
@@ -473,7 +474,7 @@ export class AuthService {
   }
 
   async sendTutorRegistrationOtp(email: string, userData: any) {
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = randomInt(100000, 1000000).toString();
     const userDataKey = `tutor_registration_data_${email}`;
     const otpKey = `tutor_registration_otp_${email}`;
     
@@ -504,7 +505,7 @@ export class AuthService {
     }
 
     
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = randomInt(100000, 1000000).toString();
     const otpKey = `tutor_registration_otp_${email}`;
     await this.cacheManager.set(otpKey, otp, 2 * 60 * 1000);
 
