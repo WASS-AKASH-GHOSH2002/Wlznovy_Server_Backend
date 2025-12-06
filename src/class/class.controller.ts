@@ -4,7 +4,7 @@ import { CreateClassDto, ClassPaginationDto, UpdateStatusDto } from './dto/creat
 import { UpdateClassDto } from './dto/update-class.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { extname } from 'node:path';
 import { PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
 import { CheckPermissions } from 'src/auth/decorators/permissions.decorator';
 import { Roles } from 'src/auth/decorators/roles.decorator';

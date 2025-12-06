@@ -6,8 +6,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BannerPaginationDto } from 'src/banner/dto/create-banner.dto';
 import { DefaultStatus } from 'src/enum';
-import { unlink } from 'fs/promises';
-import { join } from 'path';
+import { unlink } from 'node:fs/promises';
+import { join } from 'node:path';
 import { DefaultStatusDto } from 'src/common/dto/default-status.dto';
 import { DefaultStatusPaginationDto } from 'src/common/dto/default-status-pagination.dto';
 
@@ -80,7 +80,7 @@ export class NoticeService {
     if (!result) {
       throw new NotFoundException('Notice Not Found..');
     }
-    const obj = Object.assign(result, dto);
+    const obj = { ...result, ...dto };
     return this.repo.save(obj);
   }
 }

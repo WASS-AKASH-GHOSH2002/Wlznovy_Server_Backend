@@ -3,7 +3,7 @@ import { BannerService } from './banner.service';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { extname } from 'node:path';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { DefaultStatus, PermissionAction, UserRole, FileSizeLimit } from 'src/enum';
@@ -82,7 +82,6 @@ export class BannerController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-          // new FileTypeValidator({ fileType: 'image/(jpeg|jpg|png)' }),
            new MaxFileSizeValidator({ maxSize: FileSizeLimit.IMAGE_SIZE }),
         ],
       }),
@@ -158,7 +157,6 @@ export class BannerController {
     @UploadedFile(
       new ParseFilePipe({
         validators: [
-         //new FileTypeValidator({ fileType: 'image/(jpeg|jpg|png)' }),
           new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 5 }),
         ],
       }),

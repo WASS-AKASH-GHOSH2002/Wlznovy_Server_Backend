@@ -11,7 +11,7 @@ import { PermissionsGuard } from 'src/auth/guards/permissions.guard';
 import { GoalStatusDto } from 'src/goal/dto/create-goal.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { extname } from 'node:path';
 
 @Controller('country')
 export class CountryController {

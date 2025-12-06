@@ -371,8 +371,8 @@ async userProfile(id: string) {
     if (!result) {
       throw new NotFoundException('Account Not Found With This ID.');
     }
-    const obj = Object.assign(result, dto);
-    return this.staffRepo.save(obj);
+    Object.assign(result, dto);
+    return this.staffRepo.save(result);
   }
 
   async updateStaffPassword(accountId: string, dto: UpdateStaffPasswordDto) {
@@ -398,7 +398,7 @@ async userProfile(id: string) {
       throw new NotFoundException('Account Not Found With This ID.');
     }
     const oldStatus = result.status;
-    const obj = Object.assign(result, dto);
+    const obj = { ...result, ...dto };
     const updatedAccount = await this.repo.save(obj);
 
     
@@ -470,7 +470,7 @@ async userProfile(id: string) {
       }
     }
 
-    const obj = Object.assign(result, dto);
+    const obj = { ...result, ...dto };
     return this.repo.save(obj);
   }
 

@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { join } from 'path';
-import { unlink } from 'fs/promises';
+import { join } from 'node:path';
+import { unlink } from 'node:fs/promises';
 import { CountryPaginationDto, CountryStatusDto, CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -100,7 +100,7 @@ async update(id: string, dto: UpdateCountryDto) {
 
 async updateStatus(id: string, dto: CountryStatusDto) {
   const result = await this.findOne(id);
-  const obj = Object.assign(result, dto);
+  const obj = { ...result, ...dto };
   return this.repo.save(obj);
 }
 
@@ -120,7 +120,7 @@ async uploadImage(imagePath: string, country: Country) {
     }
   }
   
-  country.imageUrl = process.env.WIZNOVY_CDN_LINK + imagePath.replaceAll('\\', '/');
+  country.imageUrl = process.env.WIZNOVY_CDN_LINK + imagePath.replace(/\\/g, '/');
   country.imagePath = imagePath;
   
   return this.repo.save(country);

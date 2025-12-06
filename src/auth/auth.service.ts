@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { randomInt } from 'crypto';
+import { randomInt } from 'node:crypto';
 import {
   BadRequestException,
   ConflictException,
@@ -62,7 +62,6 @@ export class AuthService {
       throw new UnauthorizedException('Invalid Credentials');
     }
     
-  //const otp = "783211";
    const otp = randomInt(100000, 1000000).toString();
     await this.cacheManager.set(`admin_login_${admin.email}`, {
       otp,
@@ -342,7 +341,6 @@ export class AuthService {
         'Email does not exist. Please register first!',
       );
     }
-    //const otp = "783211";
     const otp = randomInt(100000, 1000000).toString();
     await this.cacheManager.set(dto.email, otp, 2 * 60 * 1000);
     try {
@@ -611,7 +609,7 @@ export class AuthService {
   }
 private async generateTutorId(): Promise<string> {
   const today = new Date();
-  const dateStr = today.toLocaleDateString('en-CA').replaceAll('-', '');
+  const dateStr = today.toLocaleDateString('en-CA').replace(/-/g, '');
   const prefix = 'WIZ';
 
   
