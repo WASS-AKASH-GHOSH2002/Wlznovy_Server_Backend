@@ -52,14 +52,14 @@ export class AccountService {
     }
 
     const encryptedPassword = await bcrypt.hash(dto.password, 13);
-    const obj = Object.assign({
+    const obj = {
       phoneNumber: dto.loginId,
       password: encryptedPassword,
       createdBy,
       roles: UserRole.STAFF,
-    });
+    };
     const payload = await this.repo.save(obj);
-    const object = Object.assign({
+    const object = {
       name: dto.name,
       email: dto.email,
       dob: dto.dob,
@@ -69,7 +69,7 @@ export class AccountService {
       country: dto.country,
       pin: dto.pin,
       accountId: payload.id,
-    });
+    };
     await this.staffRepo.save(object);
     return payload;
   }

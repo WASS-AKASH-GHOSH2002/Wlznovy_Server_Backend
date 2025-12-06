@@ -222,10 +222,10 @@ export enum BookingStatus {
 }
 
 export enum SessionDuration {
-  FIFTEEN_MIN = 15,
-  THIRTY_MIN = 30,
-  FORTY_FIVE_MIN = 45,
-  SIXTY_MIN = 60,
+  FIFTEEN_MIN = '15',
+  THIRTY_MIN = '30',
+  FORTY_FIVE_MIN = '45',
+  SIXTY_MIN = '60',
 }
 
 export enum SessionStatus {
@@ -244,8 +244,8 @@ export enum TimeSlot {
 }
 
 export enum SessionDurationType {
-  SHORT = 25,
-  LONG = 45,
+  SHORT = '25',
+  LONG = '45',
 }
 
 export enum SessionType {
@@ -294,8 +294,8 @@ export enum PaymentMethod {
 }
 
 export enum FileSizeLimit {
-  IMAGE_SIZE = 5 * 1024 * 1024, // 5MB
-  VIDEO_SIZE = 50 * 1024 * 1024, // 50MB
-  DOCUMENT_SIZE = 10 * 1024 * 1024, // 10MB
-  LOGO_SIZE = 1 * 1024 * 1024, // 1MB
+  IMAGE_SIZE = 5242880, // 5MB
+  VIDEO_SIZE = 52428800, // 50MB
+  DOCUMENT_SIZE = 10485760, // 10MB
+  LOGO_SIZE = 1048576, // 1MB
 }

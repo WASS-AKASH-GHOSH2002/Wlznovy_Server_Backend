@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Account } from 'src/account/entities/account.entity';
 import { PermissionAction } from 'src/enum';
 import { AuthService } from '../auth.service';
-export type PermissionObjectType = any;
+
 export type AppAbility = Ability<[PermissionAction, PermissionObjectType]>;
 interface CaslPermission {
   action: PermissionAction;
@@ -14,7 +14,7 @@ interface CaslPermission {
 
 @Injectable()
 export class CaslAbilityFactory {
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
   async createForUser(user: Account): Promise<AppAbility> {
     const dbPermissions = await this.authService.findPermission(user.id);
     const caslPermissions: CaslPermission[] = dbPermissions.map((p) => ({

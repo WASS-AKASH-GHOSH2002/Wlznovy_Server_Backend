@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Put, UploadedFile, UploadedFiles, UseInterceptors, ParseFilePipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query, Put, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { BookService } from './book.service';
 import { CreateBookDto, BookPaginationDto, UpdateStatusDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';

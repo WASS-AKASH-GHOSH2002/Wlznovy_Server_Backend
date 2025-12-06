@@ -415,7 +415,7 @@ export class AuthService {
     return result;
   };
 
-  private getUserDetails = async (
+  private readonly getUserDetails = async (
     id: string,
     role?: UserRole,
   ): Promise<any> => {

@@ -1,6 +1,5 @@
 import { ContactUs } from 'src/contact-us/entities/contact-us.entity';
-import { AIType, DefaultStatus, LoginType, UserRole } from 'src/enum';
-import { Faq } from 'src/faqs/entities/faq.entity';
+import { DefaultStatus, LoginType, UserRole } from 'src/enum';
 import { LoginHistory } from 'src/login-history/entities/login-history.entity';
 import { Notification } from 'src/notifications/entities/notification.entity';
 import { RatingFeedback } from 'src/rating-feedback/entities/rating-feedback.entity';
