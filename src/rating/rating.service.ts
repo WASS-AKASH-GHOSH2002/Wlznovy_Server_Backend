@@ -187,8 +187,8 @@ export class RatingService {
       .where('rating.tutorId = :tutorId', { tutorId: tutorDetail.accountId })
       .getRawOne();
 
-    const averageRating = parseFloat(result?.averageRating) || 0;
-    const totalRatings = parseInt(result?.totalRatings) || 0;
+    const averageRating = Number.parseFloat(result?.averageRating) || 0;
+    const totalRatings = Number.parseInt(result?.totalRatings) || 0;
 
     await this.tutorRepo.update({ id: tutorDetailId }, {
       averageRating,
@@ -204,8 +204,8 @@ export class RatingService {
       .where('rating.courseId = :courseId', { courseId })
       .getRawOne();
 
-    const averageRating = parseFloat(result.averageRating) || 0;
-    const totalRatings = parseInt(result.totalRatings) || 0;
+    const averageRating = Number.parseFloat(result.averageRating) || 0;
+    const totalRatings = Number.parseInt(result.totalRatings) || 0;
 
     const courseUpdate = this.courseRepo.create({
       id: courseId,

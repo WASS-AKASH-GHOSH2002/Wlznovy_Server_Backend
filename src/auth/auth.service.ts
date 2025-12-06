@@ -611,7 +611,7 @@ export class AuthService {
   }
 private async generateTutorId(): Promise<string> {
   const today = new Date();
-  const dateStr = today.toLocaleDateString('en-CA').replace(/-/g, '');
+  const dateStr = today.toLocaleDateString('en-CA').replaceAll('-', '');
   const prefix = 'WIZ';
 
   
@@ -625,8 +625,8 @@ private async generateTutorId(): Promise<string> {
 
   if (lastTutor?.tutorId) {
     
-    const lastSequence = parseInt(lastTutor.tutorId.split('/')[1]);
-    if (!isNaN(lastSequence)) {
+    const lastSequence = Number.parseInt(lastTutor.tutorId.split('/')[1], 10);
+    if (!Number.isNaN(lastSequence)) {
       sequence = lastSequence + 1; 
     }
   }

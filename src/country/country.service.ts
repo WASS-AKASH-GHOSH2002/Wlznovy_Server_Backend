@@ -120,7 +120,7 @@ async uploadImage(imagePath: string, country: Country) {
     }
   }
   
-  country.imageUrl = process.env.WIZNOVY_CDN_LINK + imagePath.replace(/\\/g, '/');
+  country.imageUrl = process.env.WIZNOVY_CDN_LINK + imagePath.replaceAll('\\', '/');
   country.imagePath = imagePath;
   
   return this.repo.save(country);

@@ -75,7 +75,7 @@ export class NewsController {
       storage: diskStorage({
         destination: './uploads/news',
         filename: (req, file, callback) => {
-          const randomName = Array(32)
+          const randomName = new Array(32)
             .fill(null)
             .map(() => Math.round(Math.random() * 16).toString(16))
             .join('');

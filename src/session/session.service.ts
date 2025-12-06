@@ -46,8 +46,8 @@ export class SessionService {
     
     if (dto.sessionType === SessionType.TRIAL && dto.trialDuration) {
       const startTimeParts = dto.startTime.split(':');
-      const startHour = parseInt(startTimeParts[0]);
-      const startMinute = parseInt(startTimeParts[1]);
+      const startHour = Number.parseInt(startTimeParts[0]);
+      const startMinute = Number.parseInt(startTimeParts[1]);
       
       const endMinute = startMinute + dto.trialDuration;
       const endHour = startHour + Math.floor(endMinute / 60);

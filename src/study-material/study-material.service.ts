@@ -216,7 +216,7 @@ async create(dto: CreateStudyMaterialDto, pdf?: Express.Multer.File) {
       }
     }
     const obj = Object.assign(result, {
-      fileUrl: process.env.WIZNOVY_CDN_LINK + file.replace(/\\/g, '/'),
+      fileUrl: process.env.WIZNOVY_CDN_LINK + file.replaceAll('\\', '/'),
       filePath: file,
     });
     return this.repo.save(obj);
