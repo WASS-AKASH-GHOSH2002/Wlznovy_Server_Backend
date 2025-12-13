@@ -13,8 +13,8 @@ import { UserRole } from 'src/enum';
 @Injectable()
 export class PermissionsGuard implements CanActivate {
   constructor(
-    private readonly reflector: Reflector,
-    private readonly abilityFactory: CaslAbilityFactory,
+    private reflector: Reflector,
+    private abilityFactory: CaslAbilityFactory,
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const requiredPermissions =

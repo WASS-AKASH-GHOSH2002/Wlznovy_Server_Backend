@@ -77,7 +77,7 @@ ConfigModule.forRoot({
       password: process.env.WIZNOVY_DB_PASS,
       database: process.env.WIZNOVY_DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize:false,
+      synchronize:true,
      
       // logging: ['error'],
       

@@ -90,8 +90,8 @@ return this.repo.save(createClassDto)
     return classData;
   }
 
-  update(id: string, updateClassDto: UpdateClassDto) {
-    const classData = this.repo.findOne({
+  async update(id: string, updateClassDto: UpdateClassDto) {
+    const classData = await this.repo.findOne({
       where: {
         id
       }

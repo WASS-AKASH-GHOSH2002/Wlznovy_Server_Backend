@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards, UseInterceptors, UploadedFile, UploadedFiles, ParseFilePipe, Patch, UsePipes, ValidationPipe, MaxFileSizeValidator } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Query, UseGuards, UseInterceptors, UploadedFile, UploadedFiles, ParseFilePipe, Patch, UsePipes, ValidationPipe, MaxFileSizeValidator, } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto, UpdateCourseDto, CoursePaginationDto } from './dto/create-course.dto';
 import { AuthGuard } from '@nestjs/passport';

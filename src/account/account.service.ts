@@ -62,7 +62,7 @@ export class AccountService {
     const object = {
       name: dto.name,
       email: dto.email,
-      dob: dto.dob,
+      dob: dto.dob.toISOString().split('T')[0],
       gender: dto.gender,
       city: dto.city,
       state: dto.state,
@@ -305,7 +305,7 @@ async userProfile(id: string) {
 
   async getStaffDetails(dto: DefaultStatusPaginationDto) {
     const keyword = dto.keyword || '';
-    const query = await this.repo
+    const query =  this.repo
       .createQueryBuilder('account')
       .leftJoinAndSelect('account.staffDetail', 'staffDetail')
       .select([
